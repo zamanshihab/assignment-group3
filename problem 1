@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    double lambda;
+    int m;
+    double a1, a2, a3;
+    double sinTheta1, sinTheta2, sinTheta3;
+
+    printf("Enter wavelength (380-750 nm): ");
+    scanf("%lf", &lambda);
+    if (lambda < 380 || lambda > 750) {
+        printf("Out of the range. Please enter a valid number.\n");
+        return 1;
+    }
+
+    printf("Enter order of diffraction (m): ");
+    scanf("%d", &m);
+    printf("Enter slit width a1 (in nm): ");
+    scanf("%lf", &a1);
+    printf("Enter slit width a2 (in nm): ");
+    scanf("%lf", &a2);
+    printf("Enter slit width a3 (in nm): ");
+    scanf("%lf", &a3);
+
+    sinTheta1 = (m * lambda) / a1;
+    sinTheta2 = (m * lambda) / a2;
+    sinTheta3 = (m * lambda) / a3;
+
+    printf("sin(θ) for a1 = %.2f nm: %.5f\n", a1, sinTheta1);
+    printf("sin(θ) for a2 = %.2f nm: %.5f\n", a2, sinTheta2);
+    printf("sin(θ) for a3 = %.2f nm: %.5f\n", a3, sinTheta3);
+
+    if (sinTheta1 >= sinTheta2 && sinTheta1 >= sinTheta3) {
+        printf("Slit width a1 bends the light the most.\n");
+    } else if (sinTheta2 >= sinTheta1 && sinTheta2 >= sinTheta3) {
+        printf("Slit width a2 bends the light the most.\n");
+    } else {
+        printf("Slit width a3 bends the light the most.\n");
+    }
+
+    return 0;
+}
